@@ -1,0 +1,73 @@
+<div class="login-box">
+    <div class="login-logo">
+        <a [routerLink]="['/']">
+            <pf-image
+                src="assets/img/logo-pgr-azul.png"
+                alt="Logo"
+                class="brand-image"
+                height="78"
+                width="280"
+                style="opacity: 0.8"
+            ></pf-image>
+            <!-- <span class="brand-text font-weight-light"><b>PGR</b></span> -->
+        </a>
+        <!-- <a [routerLink]="['/']"><b>Admin</b>LTE</a> -->
+        <!-- <img class="logo" src="/src/assets/img/logo-pgr-mp.svg"> -->
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Inicia sesion para ingresar</p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="loginByAuth()">
+                <div class="input-group mb-3">
+                    <input
+                        formControlName="username"
+                        type="text"
+                        class="form-control"
+                        placeholder="Usuario"
+                    />
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input
+                        formControlName="password"
+                        type="password"
+                        class="form-control"
+                        placeholder="Contraseña"
+                    />
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember" />
+                            <label for="remember"> Recordarme </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-5">
+                        <pf-button
+                        [variant]="'primary'"
+                        [loading]="isAuthLoading"
+                        (click)="loginByAuth()"
+                        >
+                            <i class="fa-solid fa-arrow-right-to-bracket">
+                                Entrar
+                            </i>
+                        </pf-button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.login-card-body -->
+</div>
