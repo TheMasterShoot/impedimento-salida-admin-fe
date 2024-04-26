@@ -39,7 +39,7 @@ export const MENU = [
         path: ['/']
     },
     {
-        name: 'Existencia de Impedimento de Salida',
+        name: 'Certificación IS',
         iconClasses: 'fa-solid fa-triangle-exclamation',
         children: [
             {
@@ -51,11 +51,16 @@ export const MENU = [
                 name: 'En Proceso',
                 iconClasses: 'fa-solid fa-spinner',
                 path: ['/sub-menu-2']
+            },
+            {
+                name: 'Emitidas',
+                iconClasses: 'fa-solid fa-check',
+                path: ['/sub-menu-2']
             }
         ]
     },
     {
-        name: 'Levantamiento de Impedimento de Salida',
+        name: 'Desbloqueo de Salida',
         iconClasses: 'fa-solid fa-person-circle-minus',
         children: [
             {
@@ -66,6 +71,16 @@ export const MENU = [
             {
                 name: 'En Proceso',
                 iconClasses: 'fa-solid fa-spinner',
+                path: ['/sub-menu-2']
+            },
+            {
+                name: 'Emitidos',
+                iconClasses: 'fa-solid fa-check',
+                path: ['/sub-menu-2']
+            },
+            {
+                name: 'Rechazados',
+                iconClasses: 'fa-solid fa-ban',
                 path: ['/sub-menu-2']
             }
         ]
