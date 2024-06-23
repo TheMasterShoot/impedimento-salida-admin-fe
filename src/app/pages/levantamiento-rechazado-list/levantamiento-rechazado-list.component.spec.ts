@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {BlankComponent} from './blank.component';
+import { LevantamientoRechazadoListComponent } from './levantamiento-rechazado-list.component';
 
 describe('BlankComponent', () => {
-    let component: BlankComponent;
-    let fixture: ComponentFixture<BlankComponent>;
+    let component: LevantamientoRechazadoListComponent;
+    let fixture: ComponentFixture<LevantamientoRechazadoListComponent>;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [BlankComponent]
+            declarations: [LevantamientoRechazadoListComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(BlankComponent);
+        fixture = TestBed.createComponent(LevantamientoRechazadoListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

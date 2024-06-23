@@ -1,0 +1,67 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Levantamiento de Impedimento de Salida</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active">Levantamientos de Impedimento en Proceso</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Levantamientos de Impedimento de Salida en Proceso</h3>
+      </div>
+      <div class="card-body">
+        <table *ngIf="solicitudes.length" datatable [dtOptions]="dtOptions" class="table table-bordered table-striped">
+        <!-- <table *ngIf="solicitudes.length" id="example1" class="table table-bordered table-striped"> -->
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Imputado</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Gestionar</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!-- <tbody *ngFor="let sol of solicitudes"> -->
+                <tr *ngFor="let sol of solicitudes">
+                    <td>{{sol.id}}</td>
+                    <td>{{sol.nombre + ' ' + sol.apellido}}</td>
+                    <td>{{sol.fechaSolicitud | date: 'dd-MM-yyyy'}}</td>
+                    <td class="project-state">
+                        <span class="badge" 
+                        [ngClass]="
+                        {'badge-primary': sol.estatusid === 2, 
+                        'badge-warning': sol.estatusid === 1,
+                        'badge-danger': sol.estatusid === 4,
+                        'badge-success': sol.estatusid === 3,
+                        }">{{estatusDesc}}</span>
+                    </td> 
+                    <td class="project-actions">
+                        <a class="btn btn-info btn-sm" [routerLink]="[ '/solicitud-levantamiento-impedimento', sol.id ]">
+                            <i class="fas fa-eye"></i>
+                            Detalle
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+  </section>

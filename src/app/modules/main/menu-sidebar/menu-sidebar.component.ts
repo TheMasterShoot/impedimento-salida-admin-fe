@@ -45,17 +45,17 @@ export const MENU = [
             {
                 name: 'Pendientes',
                 iconClasses: 'fa-solid fa-clock',
-                path: ['/sub-menu-1']
+                path: ['/certificaciones-pendientes']
             },
             {
                 name: 'En Proceso',
                 iconClasses: 'fa-solid fa-spinner',
-                path: ['/sub-menu-2']
+                path: ['/certificaciones-en-proceso']
             },
             {
                 name: 'Emitidas',
                 iconClasses: 'fa-solid fa-check',
-                path: ['/sub-menu-2']
+                path: ['/certificaciones-emitidas']
             }
         ]
     },
@@ -66,22 +66,22 @@ export const MENU = [
             {
                 name: 'Pendientes',
                 iconClasses: 'fa-solid fa-clock',
-                path: ['/sub-menu-1']
+                path: ['/levantamientos-pendientes']
             },
             {
                 name: 'En Proceso',
                 iconClasses: 'fa-solid fa-spinner',
-                path: ['/sub-menu-2']
+                path: ['/levantamientos-en-proceso']
             },
             {
                 name: 'Emitidos',
                 iconClasses: 'fa-solid fa-check',
-                path: ['/sub-menu-2']
+                path: ['/levantamientos-emitidos']
             },
             {
                 name: 'Rechazados',
                 iconClasses: 'fa-solid fa-ban',
-                path: ['/sub-menu-2']
+                path: ['/levantamientos-rechazados']
             }
         ]
     }
