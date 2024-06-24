@@ -81,4 +81,8 @@ export class MantSolicitudComponent implements OnInit {
     // }
   }
 
+  onBack(): void {
+    window.history.back();
+  }
+
 }
