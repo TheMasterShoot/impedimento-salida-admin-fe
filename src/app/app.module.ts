@@ -43,6 +43,7 @@ import { LevantamientoEmitidoListComponent } from '@pages/levantamiento-emitido-
 import { LevantamientoPendienteListComponent } from '@pages/levantamiento-pendiente-list/levantamiento-pendiente-list.component';
 import { LevantamientoProcesandoListComponent } from '@pages/levantamiento-procesando-list/levantamiento-procesando-list.component';
 import { MantSolicitudComponent } from '@pages/mant-solicitud/mant-solicitud.component';
+import { BreadcrumbsComponent } from '@components/breadcrumbs/breadcrumbs.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -73,6 +74,7 @@ registerLocaleData(localeEn, 'en-EN');
         MainMenuComponent,
         SubMenuComponent,
         MenuItemComponent,
+        BreadcrumbsComponent,
         ControlSidebarComponent,
         SidebarSearchComponent
     ],

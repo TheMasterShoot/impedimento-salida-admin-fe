@@ -8,7 +8,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                     <!-- <li class="breadcrumb-item">Levantamientos de Impedimento Rechazados</li> -->
-                    <li class="breadcrumb-item active">imputado</li>
+                    <li class="breadcrumb-item active">Detalle</li>
                 </ol>
             </div>
         </div>
@@ -78,10 +78,10 @@
         </div>
       </div>
       <div class="card-footer">
-        <button *ngIf="imputado.estatusid === 1" (click)="procesar()" class="btn btn-info">Procesar</button>
-        <button *ngIf="imputado.estatusid === 2" (click)="aprobar()" class="btn btn-info">Aprobar</button>
-        <button (click)="rechazar()" class="btn btn-danger ml-1">Rechazar</button>
-        <button type="submit" class="btn btn-default float-right" (click)="onBack()">Cancel</button>
+        <button *ngIf="imputado.estatusid === 1 && imputado.estatusid !== 3" (click)="procesar()" class="btn btn-info float-right">Procesar</button>
+        <button *ngIf="imputado.estatusid === 2 && imputado.estatusid !== 3" (click)="aprobar()" class="btn btn-success float-right">Aprobar</button>
+        <button *ngIf="imputado.estatusid !== 3 && imputado.estatusid !== 4" (click)="rechazar()" class="btn btn-danger">Rechazar</button>
+        <!-- <button type="submit" class="btn btn-default float-right" (click)="onBack()">Cancelar</button> -->
       </div>
     </div>
   </div>

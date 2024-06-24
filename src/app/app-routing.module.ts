@@ -28,43 +28,53 @@ const routes: Routes = [
         children: [
             {
                 path: 'solicitud-levantamiento-impedimento/:id',
-                component: MantSolicitudComponent
+                component: MantSolicitudComponent,
+                data: { breadcrumb: 'Detalle' }
             },
             {
                 path: 'certificacion-existencia-impedimento/:id',
-                component: MantCertificacionComponent
+                component: MantCertificacionComponent,
+                data: { breadcrumb: 'Detalle' } 
             },
             {
                 path: 'certificaciones-pendientes',
                 component: CertificacionExistenciaPendienteListComponent,
+                data: { breadcrumb: 'Certificaciones Pendientes' }
             },
             {
                 path: 'certificaciones-en-proceso',
                 component: CertificacionExistenciaProcesandoListComponent,
+                data: { breadcrumb: 'Certificaciones en Proceso' }
             },
             {
                 path: 'certificaciones-emitidas',
                 component: CertificacionExistenciaEmitidaListComponent,
+                data: { breadcrumb: 'Certificaciones Emitidas' }
             },
             {
                 path: 'levantamientos-pendientes',
                 component: LevantamientoPendienteListComponent,
+                data: { breadcrumb: 'Levantamientos de Impedimento Pendientes' }
             },
             {
                 path: 'levantamientos-en-proceso',
                 component: LevantamientoProcesandoListComponent,
+                data: { breadcrumb: 'Levantamientos de Impedimento en Proceso' }
             },
             {
                 path: 'levantamientos-emitidos',
                 component: LevantamientoEmitidoListComponent,
+                data: { breadcrumb: 'Levantamientos de Impedimento Emitidos' }
             },
             {
                 path: 'levantamientos-rechazados',
                 component: LevantamientoRechazadoListComponent,
+                data: { breadcrumb: 'Levantamientos de Impedimento Rechazados' }
             },
             {
                 path: '',
-                component: DashboardComponent
+                component: DashboardComponent,
+                data: { breadcrumb: 'Inicio' }
             }
         ]
     },

@@ -53,6 +53,7 @@
     "process": "0.11.10",
     "rxjs": "7.8.1",
     "summernote": "./summernote",
+    "sweetalert2": "^11.12.0",
     "tslib": "2.6.2",
     "uuid": "9.0.1",
     "zone.js": "~0.14.4"

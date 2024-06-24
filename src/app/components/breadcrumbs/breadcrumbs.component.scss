@@ -1,0 +1,22 @@
+/* breadcrumbs.component.css */
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    background: none;
+  }
+  
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 8px;
+  }
+  
+  .breadcrumb-item a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+  

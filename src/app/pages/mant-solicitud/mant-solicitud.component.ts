@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LevantamientoSalidaService } from '@services/levantamiento/levantamiento-salida.service';
 import { RechazoService } from '@services/rechazo/rechazo.service';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, take } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mant-solicitud',
@@ -16,6 +18,7 @@ export class MantSolicitudComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
+    private toastr: ToastrService,
     private levatamientoSalidaService: LevantamientoSalidaService,
     private rechazoService: RechazoService
   ) { }
@@ -66,10 +69,36 @@ export class MantSolicitudComponent implements OnInit {
   }
 
   procesar(){
-
+    Swal.fire({
+      title: "¿Está seguro?",
+      text: "No podras deshacer los cambios luego!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Si",
+      cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.toastr.success('Solicitud procesada satisfactoriamente');
+      }
+    });
   }
 
   aprobar() {
+    Swal.fire({
+      title: "¿Está seguro?",
+      text: "Una vez aprobada no podrá modificarla!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aprobar",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.onBack();
+        this.toastr.success('Solicitud aprobada satisfactoriamente');
+      }
+    });
 
   }
 
@@ -82,6 +111,7 @@ export class MantSolicitudComponent implements OnInit {
   }
 
   onBack(): void {
+    
     window.history.back();
   }
 
