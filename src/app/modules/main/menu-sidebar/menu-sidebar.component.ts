@@ -84,5 +84,21 @@ export const MENU = [
                 path: ['/levantamientos-rechazados']
             }
         ]
+    },
+    {
+        name: 'Configuración',
+        iconClasses: 'fa-solid fa-gear',
+        children: [
+            {
+                name: 'Usuarios',
+                iconClasses: 'fa-solid fa-user',
+                path: ['/usuarios']
+            },
+            {
+                name: 'Roles',
+                iconClasses: 'fa-solid fa-eye-low-vision',
+                path: ['/roles']
+            }
+        ]
     }
 ];

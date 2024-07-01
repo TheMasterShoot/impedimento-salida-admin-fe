@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Operation } from 'fast-json-patch';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,6 +25,11 @@ export class LevantamientoSalidaService {
   updateSolicitudLevantamiento(id: any): Observable<any> {
     let direccion = this.url + 'SolicitudLevantamiento/' + id;
     return this.http.put<any>(direccion, id);
+  }
+
+  patchSolicitudLevantamiento(id: any, operations: Operation[]){
+    let direccion = this.url + 'SolicitudLevantamiento/' + id;
+    return this.http.patch(direccion, operations);
   }
 
 }
