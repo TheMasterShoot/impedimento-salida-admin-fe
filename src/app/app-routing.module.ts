@@ -5,7 +5,6 @@ import {LoginComponent} from '@modules/login/login.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
 import {NonAuthGuard} from '@guards/non-auth.guard';
-import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import { MantSolicitudComponent } from '@pages/mant-solicitud/mant-solicitud.component';
 import { MantCertificacionComponent } from '@pages/mant-certificacion/mant-certificacion.component';
 import { CertificacionExistenciaEmitidaListComponent } from '@pages/certificacion-existencia-emitida-list/certificacion-existencia-emitida-list.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
         path: '',
         component: MainComponent,
         canActivate: [AuthGuard],
-        // canActivateChild: [AuthGuard],
         children: [
             {
                 path: 'solicitud-levantamiento-impedimento/:id',
@@ -87,8 +85,7 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent,
-        canActivate: [NonAuthGuard]
+        component: LoginComponent
     },
     {path: '**', redirectTo: ''}
 ];

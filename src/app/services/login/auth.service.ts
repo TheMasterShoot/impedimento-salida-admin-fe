@@ -18,6 +18,10 @@ export class AuthService {
     login(usuario: any): Observable<any> {
       return this.http.post<any>(`${this.url}Login`, usuario);
     }
+
+    validarToken(token: string): Observable<any> {
+      return this.http.get<any>(`${this.url}ValidarToken?token=${token}`);
+    }
   
     isAuthenticated(): boolean {
       const token = localStorage.getItem('token');
