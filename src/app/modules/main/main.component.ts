@@ -25,10 +25,6 @@ export class MainComponent implements OnInit {
             document.querySelector('app-root'),
             'login-page'
         );
-        this.renderer.removeClass(
-            document.querySelector('app-root'),
-            'register-page'
-        );
         this.renderer.addClass(
             document.querySelector('app-root'),
             'layout-fixed'

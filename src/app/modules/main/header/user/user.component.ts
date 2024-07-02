@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from '@services/app.service';
+import { AuthService } from '@services/login/auth.service';
 import {DateTime} from 'luxon';
 
 @Component({
@@ -8,16 +8,17 @@ import {DateTime} from 'luxon';
     styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-    public user;
+    public user: any;
 
-    constructor(private appService: AppService) {}
+    constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
-        this.user = this.appService.user;
+        // this.user = this.authService.user;
+        this.user = this.authService.getCurrentUser();
     }
 
     logout() {
-        this.appService.logout();
+        this.authService.logout();
     }
 
     formatDate(date) {

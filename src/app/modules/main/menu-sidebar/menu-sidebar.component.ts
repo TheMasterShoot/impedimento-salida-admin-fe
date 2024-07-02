@@ -2,7 +2,7 @@ import {AppState} from '@/store/state';
 import {UiState} from '@/store/ui/state';
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppService} from '@services/app.service';
+import { AuthService } from '@services/login/auth.service';
 import {Observable} from 'rxjs';
 
 const BASE_CLASSES = 'main-sidebar elevation-4';
@@ -18,7 +18,7 @@ export class MenuSidebarComponent implements OnInit {
     public menu = MENU;
 
     constructor(
-        public appService: AppService,
+        public authService: AuthService,
         private store: Store<AppState>
     ) {}
 
@@ -27,8 +27,8 @@ export class MenuSidebarComponent implements OnInit {
         this.ui.subscribe((state: UiState) => {
             this.classes = `${BASE_CLASSES} ${state.sidebarSkin}`;
         });
-        this.user = this.appService.user;
-        console.log(this.user);
+        // this.user = this.authService.user;
+        // console.log(this.user);
     }
 }
 

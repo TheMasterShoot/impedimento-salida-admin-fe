@@ -6,8 +6,9 @@ import {
     HostBinding
 } from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@services/login/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {AppService} from '@services/app.service';
 
 @Component({
     selector: 'app-login',
@@ -18,13 +19,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     @HostBinding('class') class = 'login-box';
     public loginForm: UntypedFormGroup;
     public isAuthLoading = false;
-    public isGoogleLoading = false;
-    public isFacebookLoading = false;
 
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
-        private appService: AppService
+        private authService: AuthService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -38,26 +38,30 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
     }
 
-    async loginByAuth() {
-        if (this.loginForm.valid) {
-            this.isAuthLoading = true;
-            await this.appService.loginByAuth(this.loginForm.value);
-            this.isAuthLoading = false;
-        } else {
-            this.toastr.error('Form is not valid!');
+    loginByAuth() {
+        if (this.loginForm.invalid) return;
+        
+        const objeto: any = {
+            username: this.loginForm.value.username,
+            password: this.loginForm.value.password,
         }
-    }
-
-    async loginByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.loginByGoogle();
-        this.isGoogleLoading = false;
-    }
-
-    async loginByFacebook() {
-        this.isFacebookLoading = true;
-        await this.appService.loginByFacebook();
-        this.isFacebookLoading = false;
+        
+        this.isAuthLoading = true;
+        this.authService.login(objeto).subscribe({
+            next:(data) => {
+                if(data.isSuccess){
+                    localStorage.setItem("token", data.token)
+                    this.router.navigate([''])
+                    this.toastr.success('Inicio de sesión satisfactorio')
+                } else {
+                    this.toastr.error('Credenciales incorrectas');
+                    this.isAuthLoading = false;
+                }
+            },
+            error:(error) => {
+                console.log(error.message);
+            }
+        })
     }
 
     ngOnDestroy() {

@@ -11,7 +11,6 @@ import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RegisterComponent} from '@modules/register/register.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
 import {MessagesComponent} from '@modules/main/header/messages/messages.component';
@@ -20,8 +19,6 @@ import {NotificationsComponent} from '@modules/main/header/notifications/notific
 import {CommonModule, registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
-import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
-import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
 import {LanguageComponent} from '@modules/main/header/language/language.component';
 import {MainMenuComponent} from './pages/main-menu/main-menu.component';
 import {SubMenuComponent} from './pages/main-menu/sub-menu/sub-menu.component';
@@ -44,8 +41,14 @@ import { LevantamientoPendienteListComponent } from '@pages/levantamiento-pendie
 import { LevantamientoProcesandoListComponent } from '@pages/levantamiento-procesando-list/levantamiento-procesando-list.component';
 import { MantSolicitudComponent } from '@pages/mant-solicitud/mant-solicitud.component';
 import { BreadcrumbsComponent } from '@components/breadcrumbs/breadcrumbs.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from '@services/login/auth.service';
 
 registerLocaleData(localeEn, 'en-EN');
+
+export function tokenGetter() {
+    return localStorage.getItem('token');
+  }
 
 @NgModule({
     declarations: [
@@ -63,13 +66,10 @@ registerLocaleData(localeEn, 'en-EN');
         LevantamientoProcesandoListComponent,
         LevantamientoRechazadoListComponent,
         MantSolicitudComponent,
-        RegisterComponent,
         DashboardComponent,
         MessagesComponent,
         NotificationsComponent,
         UserComponent,
-        ForgotPasswordComponent,
-        RecoverPasswordComponent,
         LanguageComponent,
         MainMenuComponent,
         SubMenuComponent,
@@ -94,9 +94,17 @@ registerLocaleData(localeEn, 'en-EN');
             positionClass: 'toast-top-right',
             preventDuplicates: true
         }),
+        HttpClientModule,
+        JwtModule.forRoot({
+          config: {
+            tokenGetter,
+            allowedDomains: ['localhost:5000'],
+            disallowedRoutes: []
+          }
+        }),
         NgxGoogleAnalyticsModule.forRoot(environment.GA_ID)
     ],
-    providers: [],
+    providers: [AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
