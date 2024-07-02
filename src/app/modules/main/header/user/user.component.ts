@@ -14,7 +14,6 @@ export class UserComponent implements OnInit {
 
     ngOnInit(): void {
         // this.user = this.authService.user;
-        this.user = this.authService.getCurrentUser();
     }
 
     logout() {

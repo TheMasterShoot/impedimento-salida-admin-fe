@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, provideHttpClient, withInterceptors} from '@angular/common/http';
 
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
@@ -43,6 +43,7 @@ import { MantSolicitudComponent } from '@pages/mant-solicitud/mant-solicitud.com
 import { BreadcrumbsComponent } from '@components/breadcrumbs/breadcrumbs.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from '@services/login/auth.service';
+import { authInterceptor } from './custom/auth.interceptor';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -104,7 +105,10 @@ export function tokenGetter() {
         }),
         NgxGoogleAnalyticsModule.forRoot(environment.GA_ID)
     ],
-    providers: [AuthService],
+    providers: [
+      AuthService,
+      provideHttpClient(withInterceptors([authInterceptor]))
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
