@@ -48,7 +48,7 @@
                         'badge-warning': certificacion.estatusid === 1,
                         'badge-danger': certificacion.estatusid === 4,
                         'badge-success': certificacion.estatusid === 3,
-                        }">{{estatusDesc}}</span>
+                        }">{{certificacion.estatusDesc}}</span>
                     </td> 
                     <td class="project-actions">
                         <a class="btn btn-info btn-sm" [routerLink]="[ '/certificacion-existencia-impedimento', certificacion.id ]">

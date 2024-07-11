@@ -48,7 +48,7 @@
                         'badge-warning': sol.estatusid === 1,
                         'badge-danger': sol.estatusid === 4,
                         'badge-success': sol.estatusid === 3,
-                        }">{{estatusDesc}}</span>
+                        }">{{sol.estatusDesc}}</span>
                     </td> 
                     <td class="project-actions">
                         <a class="btn btn-info btn-sm" [routerLink]="[ '/solicitud-levantamiento-impedimento', sol.id ]">

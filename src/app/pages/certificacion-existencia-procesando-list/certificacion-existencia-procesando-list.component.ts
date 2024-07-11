@@ -13,7 +13,6 @@ export class CertificacionExistenciaProcesandoListComponent implements OnInit, A
     @ViewChild(DataTableDirective, {static: false})
     datatableElement: DataTableDirective;
     dtOptions: Config = {};
-    estatusDesc: string = '';
 
     constructor(
         private certificacionSalidaService: CertificacionSalidaService
@@ -44,27 +43,8 @@ export class CertificacionExistenciaProcesandoListComponent implements OnInit, A
         this.certificacionSalidaService.getCertificaciones().subscribe((data: any[]) => {
                 const filtered = data.filter(data =>  data.estatusid === 2);
                 this.certificaciones = filtered;
-                this.setEstatusDesc(2);
         });
     }
-
-    setEstatusDesc(value: number) {
-        switch(value) {
-    
-          case 1:
-            this.estatusDesc = 'Pendiente';
-            break;
-          case 2:
-            this.estatusDesc = 'En Proceso';
-            break;
-          case 3:
-            this.estatusDesc = 'Aprobado';
-            break;
-          case 4:
-            this.estatusDesc = 'Rechazado';
-            break;
-        }
-      }
 
     filterTable(){
         this.datatableElement.dtInstance.then((dtInstance:any) => {

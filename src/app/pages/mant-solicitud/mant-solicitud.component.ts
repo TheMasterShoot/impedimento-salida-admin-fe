@@ -33,37 +33,19 @@ export class MantSolicitudComponent implements OnInit {
           this.imputado = data;
           this.imputadoOriginal = data;
           this.ciudadano = this.imputado.nombre + ' ' + this.imputado.apellido;
-          this.setEstatusDesc(this.imputado.estatusid);
         }
       });
     });
   }
 
-  setEstatusDesc(value: number) {
-    switch(value) {
-
-      case 1:
-        this.estatusDesc = 'Pendiente';
-        break;
-      case 2:
-        this.estatusDesc = 'En Proceso';
-        break;
-      case 3:
-        this.estatusDesc = 'Aprobado';
-        break;
-      case 4:
-        this.estatusDesc = 'Rechazado';
-        break;
-    }
-  }
-
   onDownload(archivo:string): void {
-    console.log(this.imputado.rechazo)
     if (archivo === 'carta') {
-      const url = URL.createObjectURL(this.imputado.carta);
+      var binaryData = [];
+      binaryData.push(this.imputado.carta);
+      const url = URL.createObjectURL(new Blob(binaryData, {type: "application/octet-stream"}));
       const link = document.createElement('a');
       link.href = url;
-      link.download = this.imputado.carta.name; // Nombre del archivo para la descarga
+      link.download = this.imputado.carta; // Nombre del archivo para la descarga
       link.click();
       URL.revokeObjectURL(url); // Limpia el URL object después de su uso
     } else {

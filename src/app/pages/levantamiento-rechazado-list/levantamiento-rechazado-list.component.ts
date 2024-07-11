@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { LevantamientoSalidaService } from '@services/levantamiento/levantamiento-salida.service';
 import { DataTableDirective } from 'angular-datatables';
 import { Config } from 'datatables.net';
@@ -13,7 +13,6 @@ export class LevantamientoRechazadoListComponent implements OnInit, AfterViewIni
     @ViewChild(DataTableDirective, {static: false})
     datatableElement: DataTableDirective;
     dtOptions: Config = {};
-    estatusDesc: string = '';
 
     constructor(
         private levatamientoSalidaService: LevantamientoSalidaService
@@ -44,27 +43,8 @@ export class LevantamientoRechazadoListComponent implements OnInit, AfterViewIni
         this.levatamientoSalidaService.getSolicitudesLevantamiento().subscribe((data: any[]) => {
             const filtered = data.filter(data =>  data.estatusid === 4);
             this.solicitudes = filtered;
-            this.setEstatusDesc(4);
         });
     }
-
-    setEstatusDesc(value: number) {
-        switch(value) {
-    
-          case 1:
-            this.estatusDesc = 'Pendiente';
-            break;
-          case 2:
-            this.estatusDesc = 'En Proceso';
-            break;
-          case 3:
-            this.estatusDesc = 'Aprobado';
-            break;
-          case 4:
-            this.estatusDesc = 'Rechazado';
-            break;
-        }
-      }
 
     filterTable(){
         this.datatableElement.dtInstance.then((dtInstance:any) => {

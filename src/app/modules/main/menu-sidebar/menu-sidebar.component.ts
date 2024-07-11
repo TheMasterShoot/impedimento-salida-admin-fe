@@ -47,11 +47,11 @@ export const MENU = [
                 iconClasses: 'fa-solid fa-clock',
                 path: ['/certificaciones-pendientes']
             },
-            {
-                name: 'En Proceso',
-                iconClasses: 'fa-solid fa-spinner',
-                path: ['/certificaciones-en-proceso']
-            },
+            // {
+            //     name: 'En Proceso',
+            //     iconClasses: 'fa-solid fa-spinner',
+            //     path: ['/certificaciones-en-proceso']
+            // },
             {
                 name: 'Emitidas',
                 iconClasses: 'fa-solid fa-check',
