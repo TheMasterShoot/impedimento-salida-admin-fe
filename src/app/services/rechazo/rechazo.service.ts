@@ -11,6 +11,11 @@ export class RechazoService {
 
   constructor(private http:HttpClient) { }
 
+  getRechazoById(id: any): Observable<any> {
+    let direccion = this.url + 'Rechazo/' + id;
+    return this.http.get<any>(direccion);
+  }
+
   addRechazo(id: any): Observable<any> {
     let direccion = this.url + 'Rechazo';
     return this.http.post<any>(direccion, id);
