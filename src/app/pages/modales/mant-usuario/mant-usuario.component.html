@@ -1,0 +1,63 @@
+<div class="content">
+<h2 mat-dialog-title>{{accion}} Usuario</h2>
+<mat-dialog-content>
+
+  <form [formGroup]="formUsuario">
+    <div class="row">
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" autocomplete="off" class="form-control" formControlName="nombre" placeholder="Nombre">
+        </div>
+
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" autocomplete="off" class="form-control" formControlName="username" placeholder="Nombre de Usuario">
+        </div>
+
+        <div class="form-group">
+          <label>Rol</label>
+          <select class="form-control" formControlName="rolid">
+            <option *ngFor="let item of roles" [value]="item.id">
+              {{item.rol}}
+            </option>
+          </select>
+        </div>
+       
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" autocomplete="off" class="form-control" formControlName="apellido" placeholder="Apellido">
+        </div>
+
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" autocomplete="off" class="form-control" formControlName="password" placeholder="Contraseña">
+        </div>
+        
+      <div class="form-group">
+        <label>Estatus</label>
+        <select class="form-control" formControlName="estatusid">
+          <option *ngFor="let estatus of estatuses" [value]="estatus.id">
+            {{estatus.descripcion}}
+          </option>
+        </select>
+      </div>
+     </div>
+  </div>
+  </form>
+
+
+</mat-dialog-content>
+  <div class="card-footer">
+  <button mat-dialog-close class="btn btn-default float-left">Cancelar</button>
+  <button class="btn btn-primary float-right"
+          [disabled]="formUsuario.invalid"
+          (click)="agregarEditarUsuario()">
+    {{accionBoton}}
+  </button>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '@pages/modales/mant-usuario/mant-usuario.component';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,13 @@ export class UsuarioService {
     return this.http.get<any>(direccion);
   }
   
-  updateUsuario(id: any): Observable<any> {
-    let direccion = this.url + 'Usuarios/' + id;
-    return this.http.put<any>(direccion, id);
+  updateUsuario(user: User): Observable<any> {
+    let direccion = this.url + 'Usuarios/' + user.id;
+    return this.http.put<any>(direccion, user);
   }
   
   addUsuario(usuario: any): Observable<any> {
-    let direccion = this.url + 'SolicitudLevantamiento';
+    let direccion = this.url + 'Usuarios';
     return this.http.post<any>(direccion, usuario);
   }
 }

@@ -4,7 +4,6 @@ import {MainComponent} from '@modules/main/main.component';
 import {LoginComponent} from '@modules/login/login.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
-import {NonAuthGuard} from '@guards/non-auth.guard';
 import { MantSolicitudComponent } from '@pages/mant-solicitud/mant-solicitud.component';
 import { MantCertificacionComponent } from '@pages/mant-certificacion/mant-certificacion.component';
 import { CertificacionExistenciaEmitidaListComponent } from '@pages/certificacion-existencia-emitida-list/certificacion-existencia-emitida-list.component';
@@ -14,6 +13,9 @@ import { LevantamientoPendienteListComponent } from '@pages/levantamiento-pendie
 import { LevantamientoProcesandoListComponent } from '@pages/levantamiento-procesando-list/levantamiento-procesando-list.component';
 import { LevantamientoRechazadoListComponent } from '@pages/levantamiento-rechazado-list/levantamiento-rechazado-list.component';
 import { LevantamientoEmitidoListComponent } from '@pages/levantamiento-emitido-list/levantamiento-emitido-list.component';
+import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
+import { RolesComponent } from '@pages/roles/roles.component';
+import { MantUsuarioComponent } from '@pages/modales/mant-usuario/mant-usuario.component';
 
 const routes: Routes = [
     {
@@ -74,6 +76,24 @@ const routes: Routes = [
                 component: LevantamientoRechazadoListComponent,
                 canActivate: [AuthGuard],
                 data: { breadcrumb: 'Levantamientos de Impedimento Rechazados' }
+            },
+            {
+                path: 'usuarios',
+                component: UsuariosComponent,
+                canActivate: [AuthGuard],
+                data: { breadcrumb: 'Usuarios' }
+            },
+            {
+                path: 'usuario/:id',
+                component: MantUsuarioComponent,
+                canActivate: [AuthGuard],
+                data: { breadcrumb: 'Detalle' } 
+            },
+            {
+                path: 'roles',
+                component: RolesComponent,
+                canActivate: [AuthGuard],
+                data: { breadcrumb: 'Roles' }
             },
             {
                 path: '',

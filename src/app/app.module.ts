@@ -44,6 +44,20 @@ import { BreadcrumbsComponent } from '@components/breadcrumbs/breadcrumbs.compon
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from '@services/login/auth.service';
 import { authInterceptor } from './custom/auth.interceptor';
+import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
+import { MantUsuarioComponent } from '@pages/modales/mant-usuario/mant-usuario.component';
+import { RolesComponent } from '@pages/roles/roles.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
+
+
+
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -68,6 +82,9 @@ export function tokenGetter() {
         LevantamientoRechazadoListComponent,
         MantSolicitudComponent,
         DashboardComponent,
+        UsuariosComponent,
+        MantUsuarioComponent,
+        RolesComponent,
         MessagesComponent,
         NotificationsComponent,
         UserComponent,
@@ -89,6 +106,12 @@ export function tokenGetter() {
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatInputModule,
+        MatIconModule,
+        MatGridListModule,
+        MatFormFieldModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot({
             timeOut: 3000,
@@ -107,7 +130,8 @@ export function tokenGetter() {
     ],
     providers: [
       AuthService,
-      provideHttpClient(withInterceptors([authInterceptor]))
+      provideHttpClient(withInterceptors([authInterceptor])),
+      provideAnimationsAsync()
     ],
     bootstrap: [AppComponent]
 })

@@ -1,0 +1,50 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Usuarios</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active">Roles</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-block" [routerLink]="[ '/rol', 0]"><i class="fa-solid fa-plus"></i> Nuevo Rol</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <table *ngIf="roles.length" datatable [dtOptions]="dtOptions" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rol of roles">
+                    <td>{{rol.id}}</td>
+                    <td>{{rol.rol}}</td>
+                    <td class="project-actions">
+                        <a class="btn btn-warning btn-sm" [routerLink]="[ '/rol', rol.id ]">
+                            <i class="fas fa-pencil"></i>
+                             Editar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
