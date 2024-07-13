@@ -1,4 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MantRolesComponent } from '@pages/modales/mant-roles/mant-roles.component';
 import { RolService } from '@services/rol/rol.service';
 import { DataTableDirective } from 'angular-datatables';
 import { Config } from 'datatables.net';
@@ -15,6 +17,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
     dtOptions: Config = {};
 
     constructor(
+        private dialog: MatDialog,
         private rolService: RolService
     ) {}
     
@@ -42,6 +45,29 @@ export class RolesComponent implements OnInit, AfterViewInit {
         this.rolService.getRoles().subscribe((data: any) => {
             this.roles = data;
         });
+    }
+
+    agregarRol() {
+        this.dialog.open(MantRolesComponent, {
+            disableClose: true
+          }).afterClosed().subscribe(result => {
+            
+            if (result === "agregado") {
+              this.getRoles();
+            }
+          });
+      }
+
+    editarRol(rol: any){
+        this.dialog.open(MantRolesComponent, {
+            disableClose: true,
+            data: rol
+          }).afterClosed().subscribe(result => {
+            
+            if (result === "editado")
+              this.getRoles();
+      
+          });
     }
       
 }

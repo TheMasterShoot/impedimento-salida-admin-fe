@@ -15,7 +15,6 @@ import { LevantamientoRechazadoListComponent } from '@pages/levantamiento-rechaz
 import { LevantamientoEmitidoListComponent } from '@pages/levantamiento-emitido-list/levantamiento-emitido-list.component';
 import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 import { RolesComponent } from '@pages/roles/roles.component';
-import { MantUsuarioComponent } from '@pages/modales/mant-usuario/mant-usuario.component';
 
 const routes: Routes = [
     {
@@ -82,12 +81,6 @@ const routes: Routes = [
                 component: UsuariosComponent,
                 canActivate: [AuthGuard],
                 data: { breadcrumb: 'Usuarios' }
-            },
-            {
-                path: 'usuario/:id',
-                component: MantUsuarioComponent,
-                canActivate: [AuthGuard],
-                data: { breadcrumb: 'Detalle' } 
             },
             {
                 path: 'roles',

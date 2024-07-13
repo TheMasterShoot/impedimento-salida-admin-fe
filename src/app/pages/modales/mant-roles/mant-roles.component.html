@@ -1,0 +1,31 @@
+<div class="content">
+<h2 mat-dialog-title>{{accion}} Rol</h2>
+<mat-dialog-content>
+
+  <form [formGroup]="formRol">
+    <div class="row">
+
+    <div class="col-md-12">
+
+        <div class="form-group">
+          <label>Rol</label>
+          <input type="text" autocomplete="off" class="form-control" formControlName="rol" placeholder="Nombre del Rol">
+        </div>
+
+        
+      
+     </div>
+  </div>
+  </form>
+
+
+</mat-dialog-content>
+  <div class="card-footer">
+  <button mat-dialog-close class="btn btn-default float-left">Cancelar</button>
+  <button class="btn btn-primary float-right"
+          [disabled]="formRol.invalid"
+          (click)="agregarEditarRol()">
+    {{accionBoton}}
+  </button>
+  </div>
+</div>

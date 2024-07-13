@@ -22,9 +22,9 @@ export class RolService {
     return this.http.get<any>(direccion);
   }
   
-  updateRol(id: any): Observable<any> {
-    let direccion = this.url + 'Roles/' + id;
-    return this.http.put<any>(direccion, id);
+  updateRol(rol: any): Observable<any> {
+    let direccion = this.url + 'Roles/' + rol.id;
+    return this.http.put<any>(direccion, rol);
   }
   
   addRol(rol: any): Observable<any> {

@@ -54,6 +54,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MantRolesComponent } from '@pages/modales/mant-roles/mant-roles.component';
 
 
 
@@ -84,6 +85,7 @@ export function tokenGetter() {
         DashboardComponent,
         UsuariosComponent,
         MantUsuarioComponent,
+        MantRolesComponent,
         RolesComponent,
         MessagesComponent,
         NotificationsComponent,
