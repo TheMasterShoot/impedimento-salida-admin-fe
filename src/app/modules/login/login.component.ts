@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.login(objeto).subscribe({
             next:(data) => {
                 if(data.isSuccess){
-                    localStorage.setItem("token", data.token)
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("user", data.user);
                     this.router.navigate([''])
                     this.toastr.success('Inicio de sesión satisfactorio')
                 } else {
