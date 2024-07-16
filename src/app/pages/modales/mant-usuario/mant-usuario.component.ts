@@ -5,6 +5,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EstatusService } from '@services/estatus/estatus.service';
 import { RolService } from '@services/rol/rol.service';
 import { UsuarioService } from '@services/usuario/usuario.service';
+import { compare } from 'fast-json-patch';
 import { ToastrService } from 'ngx-toastr';
 
 export interface User {
@@ -25,10 +26,13 @@ export interface User {
 export class MantUsuarioComponent implements OnInit {
   public estatuses: any = [];
   public roles: any = [];
+  public usuarioOriginal: any = [];
   formUsuario: FormGroup;
   hide: boolean = true;
   accion:string ="Agregar"
   accionBoton: string = "Guardar";
+  inputValue: string = '';
+  previousValue: string = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public usuario: User,
@@ -99,6 +103,7 @@ export class MantUsuarioComponent implements OnInit {
         estatusid: this.usuario.estatusid,
       })
     }
+    this.usuarioOriginal = this.usuario;
   }
 
   agregarEditarUsuario() {
@@ -114,7 +119,8 @@ export class MantUsuarioComponent implements OnInit {
 
     
     if (this.usuario) {
-      this.usuarioService.updateUsuario(_usuario).subscribe({
+      const patch = compare(this.usuarioOriginal, _usuario);
+      this.usuarioService.patchUsuario(_usuario.id, patch).subscribe({
         next: (data) => {
           console.log(data)
             this.toastr.success("El usuario fue editado con exito");
@@ -142,6 +148,13 @@ export class MantUsuarioComponent implements OnInit {
         }
       })  
     }
+  }
+
+  onInputChange() {
+    if (this.inputValue.length < this.previousValue.length) {
+      this.inputValue = ''; // Borra todo el contenido
+    }
+    this.previousValue = this.inputValue; // Actualiza el valor anterior
   }
 
 }  

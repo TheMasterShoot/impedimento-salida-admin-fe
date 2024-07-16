@@ -22,13 +22,13 @@ export class CertificacionSalidaService {
     return this.http.get<any>(direccion);
   }
 
-  updateCertificacion(id: any): Observable<any> {
-    let direccion = this.url + 'CertificacionExistencia/' + id;
-    return this.http.put<any>(direccion, id);
+  updateCertificacion(certificacion: any): Observable<any> {
+    let direccion = this.url + 'CertificacionExistencia/' + certificacion.id;
+    return this.http.put<any>(direccion, certificacion);
   }
 
-  patchCertificacion(id: any, operations: Operation[]){
-    let direccion = this.url + 'CertificacionExistencia/' + id;
+  patchCertificacion(certificacion: any, operations: Operation[]){
+    let direccion = this.url + 'CertificacionExistencia/' + certificacion.id;
     return this.http.patch(direccion, operations);
   }
 

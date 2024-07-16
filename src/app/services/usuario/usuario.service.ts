@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '@pages/modales/mant-usuario/mant-usuario.component';
+import { Operation } from 'fast-json-patch';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,10 @@ export class UsuarioService {
   addUsuario(usuario: any): Observable<any> {
     let direccion = this.url + 'Usuarios';
     return this.http.post<any>(direccion, usuario);
+  }
+
+  patchUsuario(id: number, operations: Operation[]){
+    let direccion = this.url + 'Usuarios/' + id;
+    return this.http.patch(direccion, operations);
   }
 }

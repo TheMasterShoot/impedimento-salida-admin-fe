@@ -16,7 +16,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {MessagesComponent} from '@modules/main/header/messages/messages.component';
 import {NotificationsComponent} from '@modules/main/header/notifications/notifications.component';
 
-import {CommonModule, registerLocaleData} from '@angular/common';
+import {CommonModule, DatePipe, registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
 import {LanguageComponent} from '@modules/main/header/language/language.component';
@@ -56,6 +56,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MantRolesComponent } from '@pages/modales/mant-roles/mant-roles.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { RechazoComponent } from '@pages/modales/rechazo/rechazo.component';
 
 
 
@@ -88,6 +89,7 @@ export function tokenGetter() {
         MantUsuarioComponent,
         MantRolesComponent,
         RolesComponent,
+        RechazoComponent,
         MessagesComponent,
         NotificationsComponent,
         UserComponent,
@@ -134,6 +136,7 @@ export function tokenGetter() {
     ],
     providers: [
       AuthService,
+      DatePipe,
       provideHttpClient(withInterceptors([authInterceptor])),
       provideAnimationsAsync()
     ],

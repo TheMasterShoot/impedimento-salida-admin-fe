@@ -80,7 +80,7 @@
       <div class="card-footer">
         <button *ngIf="imputado.estatusid === 1 && imputado.estatusid !== 3" (click)="procesar()" class="btn btn-info float-right">Procesar</button>
         <button *ngIf="imputado.estatusid === 2 && imputado.estatusid !== 3" (click)="aprobar()" class="btn btn-success float-right">Aprobar</button>
-        <button *ngIf="imputado.estatusid !== 3 && imputado.estatusid !== 4" (click)="rechazar()" class="btn btn-danger">Rechazar</button>
+        <button *ngIf="imputado.estatusid !== 3 && imputado.estatusid !== 4" (click)="rechazar(imputado)" class="btn btn-danger">Rechazar</button>
       </div>
     </div>
   </div>

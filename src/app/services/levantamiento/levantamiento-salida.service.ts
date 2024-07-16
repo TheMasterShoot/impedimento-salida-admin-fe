@@ -22,15 +22,14 @@ export class LevantamientoSalidaService {
     return this.http.get<any>(direccion);
   }
 
-  updateSolicitudLevantamiento(id: any): Observable<any> {
-    let direccion = this.url + 'SolicitudLevantamiento/' + id;
-    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    return this.http.put<any>(direccion, id, { headers });
+  updateSolicitudLevantamiento(levantamiento: any): Observable<any> {
+    let direccion = this.url + 'SolicitudLevantamiento/' + levantamiento.id;
+    // const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+    return this.http.put<any>(direccion, levantamiento);
   }
 
-  patchSolicitudLevantamiento(id: any, operations: Operation[]){
+  patchSolicitudLevantamiento(id: number, operations: Operation[]){
     let direccion = this.url + 'SolicitudLevantamiento/' + id;
-    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    return this.http.patch(direccion, operations, { headers });
+    return this.http.patch(direccion, operations);
   }
 }

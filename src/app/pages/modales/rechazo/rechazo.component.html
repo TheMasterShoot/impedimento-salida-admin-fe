@@ -1,0 +1,29 @@
+<div class="content">
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+
+  <form [formGroup]="formRechazo">
+    <div class="row">
+
+    <div class="col-md-12">
+
+        <div class="form-group">
+          <label>Motivo de Rechazo</label>
+          <textarea class="form-control" rows="3" placeholder="Escriba el motivo del rechazo" formControlName="motivo"></textarea>
+        </div>    
+      
+     </div>
+  </div>
+  </form>
+
+
+</mat-dialog-content>
+  <div class="card-footer">
+  <button mat-dialog-close class="btn btn-default float-left">Cancelar</button>
+  <button class="btn btn-primary float-right"
+          [disabled]="formRechazo.invalid"
+          (click)="rechazar()">
+    {{accionBoton}}
+  </button>
+  </div>
+</div>
