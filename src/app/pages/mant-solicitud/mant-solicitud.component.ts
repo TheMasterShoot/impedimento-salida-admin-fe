@@ -1,8 +1,11 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RechazoComponent } from '@pages/modales/rechazo/rechazo.component';
 import { LevantamientoSalidaService } from '@services/levantamiento/levantamiento-salida.service';
+import { RechazoService } from '@services/rechazo/rechazo.service';
+import { UsuarioService } from '@services/usuario/usuario.service';
 import { compare } from 'fast-json-patch';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, take } from 'rxjs';
@@ -17,14 +20,30 @@ export class MantSolicitudComponent implements OnInit {
   public imputado: any = {};
   public imputadoOriginal: any[] = [];
   public ciudadano: string = '';
+  public tipoLevantamiento: string[] = ['Parcial', 'Definitivo'];
+  public user;
+  public motivoRechazo;
+  public userSesion: any = [];
+  public fechaHoy: Date = new Date();
+  public fechaFormateada: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,  
     private dialog: MatDialog,
+    private datePipe: DatePipe,
     private toastr: ToastrService,
+    private rechazoService: RechazoService,
+    private usuarioService: UsuarioService,
     private levatamientoSalidaService: LevantamientoSalidaService
-  ) { }
+  ) {
+    this.fechaFormateada = this.datePipe.transform(this.fechaHoy, 'yyyy-MM-dd');
+    this.userSesion = localStorage.getItem('user');
+    this.usuarioService.getUsuarios().subscribe((data:any) => {
+        const usuario = data.find((user) => user.username === this.userSesion)
+        this.user = usuario
+    }); 
+   }
   
   ngOnInit(): void {
     this.route.params.pipe(take(1)).subscribe((params) => {
@@ -37,6 +56,11 @@ export class MantSolicitudComponent implements OnInit {
         }
       });
     });
+    this.rechazoService.getRechazos().subscribe((data: any) => {
+      const rechazoid = data.find((rechazo) => rechazo.levantamientoid === this.imputado.id);
+      this.motivoRechazo = rechazoid;
+      console.log('rechazo: ' + this.imputado.id)
+    })
   }
 
   onDownload(archivo:string): void {
@@ -89,8 +113,17 @@ export class MantSolicitudComponent implements OnInit {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.toastr.success('Solicitud aprobada satisfactoriamente');
-        this.router.navigate(['/levantamientos-en-proceso']);
+        this.imputado.estatusid = 3;
+        this.imputado.usuarioAprobacion = this.user.username;
+        this.imputado.fechaAprobacion = this.fechaFormateada;
+        const patch = compare(this.imputadoOriginal, this.imputado);
+        this.levatamientoSalidaService.patchSolicitudLevantamiento(this.imputado.id, patch).subscribe(data =>{
+            this.toastr.success('Solicitud aprobada satisfactoriamente');
+            // this.sendEmail();
+            this.router.navigate(['/levantamientos-en-proceso']).then(() => {
+              window.history.replaceState({}, '', '/');
+            });
+        });
       }
     });
 

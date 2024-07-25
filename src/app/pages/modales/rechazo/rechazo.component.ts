@@ -52,7 +52,6 @@ export class RechazoComponent implements OnInit {
     });
     this.levantamientoSalidaService.getSolicitudLevantamientoById(this.imputado.id).subscribe(data => {
       if(data){
-        // this.imputado1 = Object.assign({}, data);
         this.imputadoOriginal = data;
       }
     });

@@ -46,40 +46,73 @@
             <label>Fecha de Solicitud</label>
             <input type="text" class="form-control" [(ngModel)]="imputado.fechaSolicitud" disabled>
           </div>
-          
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="text" class="form-control" [(ngModel)]="imputado.email" disabled>
+          </div>
         </div>
         
+        <!--mitad del formulario  -->
         <div class="col-md-6">
           <div class="form-group">
             <div class="row pl-4 pr-4">
               <div class="col-md-4">
-  
                 <a class="btn btn-app form-control">
                   <i class="fas fa-save" (click)="onDownload('carta')"></i> Carta Solicitud
                 </a>
               </div>
               <div class="col-md-4">
-  
                 <a class=" btn btn-app form-control">
                   <i class="fas fa-save" (click)="onDownload('sentencia')"></i> Sentencia
                 </a>
               </div>
               <div class="col-md-4">
-  
                 <a class="form-control btn btn-app">
                   <i class="fas fa-save" (click)="onDownload('noRecurso')"></i> Certificación no Recurso
                 </a>
               </div>
-              
             </div>
+
+            <div *ngIf="imputado.estatusid === 4" class="form-group centered">
+              <div class="form-group card card-danger ">
+                <div class="card-header">
+                  <h4 class="card-title w-100">
+                    <a class="d-block w-100" data-toggle="collapse" aria-expanded="true">
+                      Motivo de Rechazo
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="collapse show">
+                  <div class="card-body">
+                    {{motivoRechazo.motivo}}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="imputado.estatusid === 2 || imputado.estatusid === 3" class="form-group row pl-4 pr-4">
+            <label>Tipo de Levantamiento</label>
+            <select class="form-control" [(ngModel)]="imputado.levantamientoTipo" [disabled]="imputado.estatusid === 3">
+              <option *ngFor="let tipo of tipoLevantamiento" [value]="tipo">
+                {{tipo}}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="imputado.estatusid === 2 || imputado.estatusid === 3" class="form-group row pl-4 pr-4">
+            <label>Referencia</label>
+            <input type="text" class="form-control" [(ngModel)]="imputado.referencia"
+            [disabled]="imputado.estatusid === 3">
           </div>
           
-          <!--mitad del formulario  -->
+          
+  
         </div>
       </div>
       <div class="card-footer">
         <button *ngIf="imputado.estatusid === 1 && imputado.estatusid !== 3" (click)="procesar()" class="btn btn-info float-right">Procesar</button>
-        <button *ngIf="imputado.estatusid === 2 && imputado.estatusid !== 3" (click)="aprobar()" class="btn btn-success float-right">Aprobar</button>
+        <button *ngIf="imputado.estatusid === 2 && imputado.estatusid !== 3" (click)="aprobar()" class="btn btn-success float-right"
+          [disabled]="!imputado.referencia || !imputado.levantamientoTipo">Aprobar</button>
         <button *ngIf="imputado.estatusid !== 3 && imputado.estatusid !== 4" (click)="rechazar(imputado)" class="btn btn-danger">Rechazar</button>
       </div>
     </div>
