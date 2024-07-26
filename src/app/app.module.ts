@@ -57,6 +57,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MantRolesComponent } from '@pages/modales/mant-roles/mant-roles.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { RechazoComponent } from '@pages/modales/rechazo/rechazo.component';
+import { MantCertificacionComponent } from '@pages/mant-certificacion/mant-certificacion.component';
 
 
 
@@ -84,6 +85,7 @@ export function tokenGetter() {
         LevantamientoProcesandoListComponent,
         LevantamientoRechazadoListComponent,
         MantSolicitudComponent,
+        MantCertificacionComponent,
         DashboardComponent,
         UsuariosComponent,
         MantUsuarioComponent,

@@ -14,3 +14,70 @@
         </div>
     </div>
 </section>
+
+<section class="content">
+
+    <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Detalle de Solicitud</h3>
+          <div class="card-tools">
+            <span class="badge" 
+                            [ngClass]="
+                            {'badge-primary': imputado.estatusid === 2, 
+                            'badge-warning': imputado.estatusid === 1,
+                            'badge-danger': imputado.estatusid === 4,
+                            'badge-success': imputado.estatusid === 3,
+                            }">{{imputado.estatusDesc}}</span>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div  class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Cédula</label>
+                <input type="text" class="form-control" [(ngModel)]="imputado.cedula" disabled>
+              </div>
+              <div class="form-group">
+                  <label>Imputado</label>
+                  <input type="text" class="form-control" [(ngModel)]="ciudadano" disabled>
+                </div>
+              <div class="form-group">
+                <label>Fecha de Solicitud</label>
+                <input type="text" class="form-control" [(ngModel)]="imputado.fechaSolicitud" disabled>
+              </div>
+              <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="text" class="form-control" [(ngModel)]="imputado.email" disabled>
+              </div>
+            </div>
+            
+            <!--mitad del formulario  -->
+            <div class="col-md-6">
+              <div class="form-group row pl-4 pr-4">
+                <label>Existe Impedimento</label>
+                <select class="form-control" [(ngModel)]="imputado.existeImpedimento" [disabled]="imputado.estatusid === 3">
+                  <option *ngFor="let item of existeImpedimento" [value]="item">
+                    {{item}}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group row pl-4 pr-4">
+                <label>Motivo del Impedimento</label>
+                <textarea class="form-control" rows="3" placeholder="Escriba el motivo del impedimento"  
+                [(ngModel)]="imputado.motivo" [disabled]="imputado.estatusid === 3 || imputado.existeImpedimento !== 'Si' "></textarea>
+              </div>
+              <div class="form-group row pl-4 pr-4">
+                <label>Referencia</label>
+                <input type="text" class="form-control" [(ngModel)]="imputado.referencia" placeholder="Número de caso o expediente"
+                [disabled]="imputado.estatusid === 3 || imputado.existeImpedimento !== 'Si' ">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="imputado.estatusid !== 3" (click)="aprobar()" class="btn btn-success float-right"
+            [disabled]="!imputado.existeImpedimento || ((imputado.existeImpedimento === 'Si' && !imputado.referencia) || (imputado.existeImpedimento === 'Si' && !imputado.motivo))">Aprobar</button>
+          </div>
+        </div>
+      </div>
+  </section>

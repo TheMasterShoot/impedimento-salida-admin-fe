@@ -8,7 +8,7 @@ import { RechazoService } from '@services/rechazo/rechazo.service';
 import { UsuarioService } from '@services/usuario/usuario.service';
 import { compare } from 'fast-json-patch';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, take } from 'rxjs';
+import { take } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -27,8 +27,8 @@ export class CertificacionSalidaService {
     return this.http.put<any>(direccion, certificacion);
   }
 
-  patchCertificacion(certificacion: any, operations: Operation[]){
-    let direccion = this.url + 'CertificacionExistencia/' + certificacion.id;
+  patchCertificacion(id: number, operations: Operation[]){
+    let direccion = this.url + 'CertificacionExistencia/' + id;
     return this.http.patch(direccion, operations);
   }
 
