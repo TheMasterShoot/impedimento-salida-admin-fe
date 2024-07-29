@@ -16,6 +16,11 @@ export class LevantamientoSalidaService {
     let direccion = this.url + 'SolicitudLevantamiento';
     return this.http.get<any[]>(direccion);
   }
+
+  downloadFile(cedula: string, filename: string): Observable<Blob> {
+    const direccion = `${this.url}SolicitudLevantamiento/download/${cedula}/${filename}`;
+    return this.http.get(direccion, { responseType: 'blob' });
+  }
   
   getSolicitudLevantamientoById(id: any): Observable<any> {
     let direccion = this.url + 'SolicitudLevantamiento/' + id;

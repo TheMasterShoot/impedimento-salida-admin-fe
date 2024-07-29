@@ -10,6 +10,7 @@ import { UsuarioService } from '@services/usuario/usuario.service';
 import { compare } from 'fast-json-patch';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
+import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,6 +28,8 @@ export class MantSolicitudComponent implements OnInit {
   public userSesion: any = [];
   public fechaHoy: Date = new Date();
   public fechaFormateada: any;
+  public lastSlashIndex: any;
+  public fileName: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,19 +67,30 @@ export class MantSolicitudComponent implements OnInit {
     })
   }
 
-  onDownload(archivo:string): void {
-    if (archivo === 'carta') {
-      var binaryData = [];
-      binaryData.push(this.imputado.carta);
-      const url = URL.createObjectURL(new Blob(binaryData, {type: "application/octet-stream"}));
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = this.imputado.carta; // Nombre del archivo para la descarga
-      link.click();
-      URL.revokeObjectURL(url); // Limpia el URL object después de su uso
-    } else {
-      console.error('No se ha cargado ningún archivo.');
+  onDownload(file: string) {
+    switch (file) {
+      case 'carta':
+        this.lastSlashIndex = this.imputado.carta.lastIndexOf("\\");
+        this.fileName = this.imputado.carta.substring(this.lastSlashIndex + 1);
+        break;
+      case 'sentencia':
+        this.lastSlashIndex = this.imputado.sentencia.lastIndexOf("\\");
+        this.fileName = this.imputado.sentencia.substring(this.lastSlashIndex + 1);
+        break;
+      case 'noRecurso':
+        this.lastSlashIndex = this.imputado.noRecurso.lastIndexOf("\\");
+        this.fileName = this.imputado.noRecurso.substring(this.lastSlashIndex + 1);
+        break;
     }
+
+    this.levatamientoSalidaService.downloadFile(this.imputado.cedula, this.fileName).subscribe(
+      (blob) => {
+        saveAs(blob, this.fileName);
+      },
+      (error) => {
+        console.error('Error al descargar el archivo', error);
+      }
+    );
   }
 
   procesar(){
