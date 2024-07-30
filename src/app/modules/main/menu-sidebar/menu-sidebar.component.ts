@@ -15,9 +15,10 @@ const BASE_CLASSES = 'main-sidebar elevation-4';
 export class MenuSidebarComponent implements OnInit {
     @HostBinding('class') classes: string = BASE_CLASSES;
     public ui: Observable<UiState>;
-    public user;
+    public user: any;
     public userSesion: any = [];
-    public menu = MENU;
+    public menu: any;
+    public menuRol: number;
 
     constructor(
         public authService: AuthService,
@@ -34,12 +35,16 @@ export class MenuSidebarComponent implements OnInit {
 
         this.usuarioService.getUsuarios().subscribe((data:any) => {
             const usuario = data.find((user) => user.username === this.userSesion)
-            this.user = usuario
+            this.user = usuario;
+            this.menuRol = this.user.rolid;
+            this.menu = this.menuRol === 2 ? MENUADM : MENU;
         });
+
     }
 }
 
-export const MENU = [
+
+export const MENUADM = [
     {
         name: 'Inicio',
         iconClasses: 'fa-solid fa-house',
@@ -105,6 +110,63 @@ export const MENU = [
                 name: 'Roles',
                 iconClasses: 'fa-solid fa-eye-low-vision',
                 path: ['/roles']
+            }
+        ]
+    }
+]; 
+
+export const MENU =
+
+[
+    {
+        name: 'Inicio',
+        iconClasses: 'fa-solid fa-house',
+        path: ['/']
+    },
+    {
+        name: 'Certificación IS',
+        iconClasses: 'fa-solid fa-triangle-exclamation',
+        children: [
+            {
+                name: 'Pendientes',
+                iconClasses: 'fa-solid fa-clock',
+                path: ['/certificaciones-pendientes']
+            },
+            // {
+            //     name: 'En Proceso',
+            //     iconClasses: 'fa-solid fa-spinner',
+            //     path: ['/certificaciones-en-proceso']
+            // },
+            {
+                name: 'Emitidas',
+                iconClasses: 'fa-solid fa-check',
+                path: ['/certificaciones-emitidas']
+            }
+        ]
+    },
+    {
+        name: 'Desbloqueo de Salida',
+        iconClasses: 'fa-solid fa-person-circle-minus',
+        children: [
+            {
+                name: 'Pendientes',
+                iconClasses: 'fa-solid fa-clock',
+                path: ['/levantamientos-pendientes']
+            },
+            {
+                name: 'En Proceso',
+                iconClasses: 'fa-solid fa-spinner',
+                path: ['/levantamientos-en-proceso']
+            },
+            {
+                name: 'Emitidos',
+                iconClasses: 'fa-solid fa-check',
+                path: ['/levantamientos-emitidos']
+            },
+            {
+                name: 'Rechazados',
+                iconClasses: 'fa-solid fa-ban',
+                path: ['/levantamientos-rechazados']
             }
         ]
     }
