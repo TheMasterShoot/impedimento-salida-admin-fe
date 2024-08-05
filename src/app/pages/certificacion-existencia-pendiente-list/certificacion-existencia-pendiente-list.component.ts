@@ -33,6 +33,7 @@ export class CertificacionExistenciaPendienteListComponent implements OnInit, Af
             pagingType: 'full_numbers',
             pageLength: 10,
             processing: true,
+            order: [[0, 'desc']],
             language: {
               url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json',
           },

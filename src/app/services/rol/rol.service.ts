@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RolService {
-  public url:string = "https://localhost:8080/api/";
+  public url:string = "https://impsa.azurewebsites.net/api/";
+  // url:string = "https://localhost:8080/api/"
 
   constructor(
     private http: HttpClient

@@ -1,3 +1,5 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "appService.defaultWebAppToDeploy": "/subscriptions/a4b007dd-32ea-466b-b075-72a3874fda23/resourceGroups/istesis/providers/Microsoft.Web/sites/impsaadm",
+    "appService.deploySubpath": "dist\\adminlte"
 }

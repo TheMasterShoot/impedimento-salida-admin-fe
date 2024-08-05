@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '@pages/modales/mant-usuario/mant-usuario.component';
 import { Operation } from 'fast-json-patch';
@@ -8,7 +8,8 @@ import { Operation } from 'fast-json-patch';
   providedIn: 'root'
 })
 export class UsuarioService {
-  public url:string = "https://localhost:8080/api/";
+  public url:string = "https://impsa.azurewebsites.net/api/";
+  // url:string = "https://localhost:8080/api/"
 
   constructor(
     private http: HttpClient

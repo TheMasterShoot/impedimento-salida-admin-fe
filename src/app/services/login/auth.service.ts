@@ -8,7 +8,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     providedIn: 'root'
 })
 export class AuthService {
-    public url:string = "https://localhost:8080/api/Auth/";
+    public url:string = "https://impsa.azurewebsites.net/api/Auth/";
+    // url:string = "https://localhost:8080/api/"
 
     constructor(
       private http: HttpClient, 

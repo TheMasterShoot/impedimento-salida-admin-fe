@@ -70,15 +70,15 @@ export class MantSolicitudComponent implements OnInit {
   onDownload(file: string) {
     switch (file) {
       case 'carta':
-        this.lastSlashIndex = this.imputado.carta.lastIndexOf("\\");
+        this.lastSlashIndex = this.imputado.carta.lastIndexOf("/");
         this.fileName = this.imputado.carta.substring(this.lastSlashIndex + 1);
         break;
       case 'sentencia':
-        this.lastSlashIndex = this.imputado.sentencia.lastIndexOf("\\");
+        this.lastSlashIndex = this.imputado.sentencia.lastIndexOf("/");
         this.fileName = this.imputado.sentencia.substring(this.lastSlashIndex + 1);
         break;
       case 'noRecurso':
-        this.lastSlashIndex = this.imputado.noRecurso.lastIndexOf("\\");
+        this.lastSlashIndex = this.imputado.noRecurso.lastIndexOf("/");
         this.fileName = this.imputado.noRecurso.substring(this.lastSlashIndex + 1);
         break;
     }

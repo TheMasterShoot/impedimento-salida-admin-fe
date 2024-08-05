@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class EmailService {
 
-  url:string = "https://localhost:8080/api/"
+  url:string = "https://impsa.azurewebsites.net/api/"
+  // url:string = "https://localhost:8080/api/"
 
   constructor(private http:HttpClient) { }
 
