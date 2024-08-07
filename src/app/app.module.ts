@@ -134,7 +134,7 @@ export function tokenGetter() {
             disallowedRoutes: []
           }
         }),
-        NgxGoogleAnalyticsModule.forRoot(environment.GA_ID)
+        NgxGoogleAnalyticsModule.forRoot(environment.url)
     ],
     providers: [
       AuthService,

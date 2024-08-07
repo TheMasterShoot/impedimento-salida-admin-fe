@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstatusService {
-  public url:string = "https://impsa.azurewebsites.net/api/";
+
+  url:string = environment.url
+  // public url:string = "https://impsa.azurewebsites.net/api/";
   // url:string = "https://localhost:8080/api/"
 
   constructor(

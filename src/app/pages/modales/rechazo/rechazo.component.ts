@@ -166,6 +166,17 @@ export class RechazoComponent implements OnInit {
                     <li>Número de Solicitud: <strong>${codigo}</strong></li>
                 </ul>
             </div>
+            ${this.imputado.estatusid === 5 ? 
+              `<p><strong>Pasos para actualizar sus documentos adjuntados:</strong></p>
+                <ul>
+                    <li>Ingresar en el portal de servicios de la Procuraduría General de la República, a través del siguiente enlace <a href="https://impsapgr.azurewebsites.net">https://impsapgr.azurewebsites.net/</a>.</li>
+                    <li>Click la opción "consultar servicios en línea"</li>
+                    <li>Click en consultar en la opción "Levantamiento de impedimento de salida"</li>
+                    <li>Click en editar en la solicitud con estatus "Rechazada Temporal"</li>
+                    <li>Llene todos los campos del formulario"</li>
+                    <li>Click en Enviar</li>
+                </ul>
+              ` : ''}
         </div>
         <div class="footer">
             <p>Para más información, no dude en contactarnos a través de los medios mencionados arriba.</p>
@@ -175,9 +186,13 @@ export class RechazoComponent implements OnInit {
       `
     }
     
-    this.emailService.sendEmail(email).subscribe();
+    const formData = new FormData();
+    formData.append('Para', email.para);
+    formData.append('Asunto', email.asunto);
+    formData.append('Cuerpo', email.cuerpo);
+
+    this.emailService.sendEmail(formData).subscribe();
 
   }
-
 }  
 

@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '@pages/modales/mant-usuario/mant-usuario.component';
 import { Operation } from 'fast-json-patch';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  public url:string = "https://impsa.azurewebsites.net/api/";
+
+  url:string = environment.url
+  // public url:string = "https://impsa.azurewebsites.net/api/";
   // url:string = "https://localhost:8080/api/"
 
   constructor(

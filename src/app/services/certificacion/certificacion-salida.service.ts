@@ -1,5 +1,6 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
 import { Operation } from 'fast-json-patch';
 import { Observable } from 'rxjs';
 
@@ -8,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class CertificacionSalidaService {
 
-  url:string = "https://impsa.azurewebsites.net/api/"
+  url:string = environment.url
+  // url:string = "https://impsa.azurewebsites.net/api/"
   // url:string = "https://localhost:8080/api/"
 
   constructor(private http:HttpClient) { }
